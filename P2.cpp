@@ -129,3 +129,31 @@ int main() {
     delete[] coeffsSecondpolynomial;
     return 0;
 }
+
+/*
+test1:
+Input: 
+Order of first polynomial: 2   
+Enter polynomial: 0 1 3 2   
+Order of second polynomial: 4   
+Enter polynomial: 8 0 4 0 0 3   
+Output: 
+First polynomial: 2x^2 + 3x + 1 = 0   
+Second polynomial: 3x^4 + 4x = 8   
+Sum of polynomials: 3x^4 + 2x^2 + 7x + 1 = 8   
+Difference of polynomials: 3x^4 - 2x^2 + x - 1 = 8
+
+
+
+test2:
+Input: 
+Order of first polynomial: 3   
+Enter polynomial: 0 5 0 1 4   
+Order of second polynomial: 3   
+Enter polynomial: 0 2 3 0 6   
+Output: 
+First polynomial: 4x^3 + x^2 + 5 = 0   
+Second polynomial: 6x^3 + 3x + 2 = 0   
+Sum of polynomials: 10x^3 + x^2 + 3x + 7 = 0   
+Difference of polynomials: 2x^3 - x^2 + 3x - 3 = 0
+*/
