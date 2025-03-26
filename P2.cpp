@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
+#include <fstream>
 using namespace std;
 
 class Polynomial {
@@ -99,7 +100,51 @@ void FillPolynomial(int OrderOfPolynomial, int coeffsPolynomial[]) {
 }
 
 int main() {
-    int Firstorder = 0, Secondorder = 0;
+
+    // input by file
+    ifstream inputFile("test_cases.txt");
+    if (!inputFile) {
+        cout << "Error: Cannot open test_cases.txt" << endl;
+        return 0;
+    }
+
+    int Firstorder, Secondorder;
+    while (inputFile >> Firstorder) {
+        int* coeffsFirstpolynomial = new int[Firstorder + 1];
+        for (int i = 0; i <= Firstorder + 1; i++) {
+            inputFile >> coeffsFirstpolynomial[i];
+        }
+
+        inputFile >> Secondorder;
+        int* coeffsSecondpolynomial = new int[Secondorder + 1];
+        for (int i = 0; i <= Secondorder + 1; i++) {
+            inputFile >> coeffsSecondpolynomial[i];
+        }
+
+        Polynomial P1(Firstorder, coeffsFirstpolynomial);
+        Polynomial P2(Secondorder, coeffsSecondpolynomial);
+
+        cout << "First Polynomial: ";
+        P1.Display();
+        cout << "Second Polynomial: ";
+        P2.Display();
+
+        cout << "Sum of polynomials: ";
+        (P1 + P2).Display();
+        cout << "Difference of polynomials: ";
+        (P2 - P1).Display();
+        cout << "----------------------------" << endl;
+
+        delete[] coeffsFirstpolynomial;
+        delete[] coeffsSecondpolynomial;
+    }
+
+    inputFile.close();
+
+
+    // input by user
+
+    /*int Firstorder = 0, Secondorder = 0;
     cout << "Order of first polynomial: ";
     cin >> Firstorder;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -124,9 +169,9 @@ int main() {
     cout << "Difference of polynomials: ";
     (P2 - P1).Display();
 
-
     delete[] coeffsFirstpolynomial;
     delete[] coeffsSecondpolynomial;
+    */
     return 0;
 }
 
