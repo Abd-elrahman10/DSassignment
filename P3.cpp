@@ -2,12 +2,12 @@
 
 using namespace std;
 
-
+template<class T>
 class Node{
 public:
-    int data;
+    T data;
     Node* next;
-Node(int val){
+Node(T val){
     data=val;
     next = nullptr;
 }
@@ -15,10 +15,10 @@ Node(int val){
 
 
 
-
+template<class T>
 class SortedLinkedList{
 private:
-     Node* head;
+     Node<T>* head;
 
 public:
 
@@ -27,8 +27,8 @@ public:
 }
 
 
- void insert(int value){
-  Node* newnode=new Node(value);
+ void insert(T value){
+  Node<T>* newnode=new Node<T>(value);
 
  if(head==NULL){//case 1 list is empty
      head =newnode;
@@ -41,8 +41,8 @@ public:
      return;
  }
 else{
-Node* current=head;
-Node* trailcurrent= nullptr;
+Node<T>* current=head;
+Node<T>* trailcurrent= nullptr;
 bool found=false;
        while (!found&&current!=NULL){
                 if(current->data>=value)//is new node is less than some element
@@ -75,8 +75,8 @@ bool found=false;
 }
 
 
-int operator[] (int index){
-     Node* current=head;
+T operator[] (int index){
+     Node<T>* current=head;
 bool found = false;
 int i =0;
   while(current!=NULL){
@@ -95,8 +95,8 @@ int i =0;
  }
 
 void remove(int index){
-    Node* current=head;
-    Node* tailcurrent= nullptr;
+    Node<T>* current=head;
+    Node<T>* tailcurrent= nullptr;
 
     if(index==0){
         head=head->next;
@@ -117,9 +117,9 @@ void remove(int index){
 
  }
 
-friend ostream& operator<<(ostream& os,const SortedLinkedList& List){
+friend ostream& operator<<(ostream& os,const SortedLinkedList<T>& List){
 
-Node* temp=List.head;
+Node<T>* temp=List.head;
     while(temp!=NULL){
         os<<temp->data<<" ";
         temp=temp->next;
@@ -130,7 +130,7 @@ Node* temp=List.head;
   ~SortedLinkedList() {
         while (head) {
 
-            Node* temp = head;
+            Node<T>* temp = head;
             head = head->next;
             delete temp;
         }
@@ -141,7 +141,7 @@ Node* temp=List.head;
 
 
 void test(int testCaseNumber) {
-    SortedLinkedList L;
+    SortedLinkedList<int> L;
     ifstream file ("test_cases.txt");
     if (!file) {
         cout << "Error opening file!" << endl;
@@ -189,7 +189,7 @@ void test(int testCaseNumber) {
 }
 
 int main() {
-SortedLinkedList L;
+SortedLinkedList<char> L;
 
 /*//Test case 1
 
@@ -221,7 +221,9 @@ SortedLinkedList L;
     L.remove(2); // L = [6, 6]
     cout << L; // Output: [6, 6]
 */
-    test(3);
+    test(1);
+
+
     return 0;
 }
 
