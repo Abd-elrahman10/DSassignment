@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
-#define ll long long
+
 using namespace std;
+
+
 class Node{
 public:
     int data;
@@ -137,6 +139,55 @@ Node* temp=List.head;
 }
 };
 
+
+void test(int testCaseNumber) {
+    SortedLinkedList L;
+    ifstream file ("test_cases.txt");
+    if (!file) {
+        cout << "Error opening file!" << endl;
+        return;
+    }
+    string line;
+    bool testCaseFound = false;
+
+    while (getline(file , line)) {
+        if (line.empty()) continue;
+
+        if (line[0] == '#') {
+            int currentTestCase = stoi(line.substr(1));
+            if (currentTestCase == testCaseNumber) {
+                testCaseFound = true;
+                cout << line << endl;
+            } else if (testCaseFound) {
+                break;
+            }
+        } else if (testCaseFound) {
+            if (line.substr(0, 6) == "insert") {
+                int value = stoi(line.substr(7));
+                L.insert(value);
+            } else if (line.substr(0, 6) == "delete") {
+                int index = stoi(line.substr(7));
+                L.remove(index);
+            } else if (line == "-------------------------------------") {
+                try {
+                    cout << "First element: " << L[0] << endl;
+
+                    cout << "List: " << L << endl;
+                } catch (const out_of_range& e) {
+                    cout << "List is empty" << endl;
+                }
+                cout << "-------------------------------------" << endl;
+                break;  // End of test case
+            }
+        }
+    }
+
+    if (!testCaseFound) {
+        cout << "Test case #" << testCaseNumber << " not found!" << endl;
+    }
+
+}
+
 int main() {
 SortedLinkedList L;
 
@@ -170,7 +221,7 @@ SortedLinkedList L;
     L.remove(2); // L = [6, 6]
     cout << L; // Output: [6, 6]
 */
-
+    test(3);
     return 0;
 }
 
