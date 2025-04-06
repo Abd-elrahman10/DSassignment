@@ -1,27 +1,54 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include<sstream>
 
 using namespace std;
-
 class Guest {
 private:
     string name, contact, iftar_date;
 
-public:
-    Guest() {
-        name="Nobody";
-        contact="010000000";
-        iftar_date="aaaa@gmail.com";
+    // Helper function to check if the date is valid
+    bool isValidDate(const string& date) {
+        int day, month, year;
+        // Check for the correct date format (dd-mm-yyyy)
+        char dash1, dash2;
+        stringstream ss(date);
+        ss >> day >> dash1 >> month >> dash2 >> year;
+
+        // Validate the date format
+        if (ss.fail() || dash1 != '-' || dash2 != '-' || day < 1 || month < 1 || year < 2024) {
+            return false;
+        }
+
+        // Check for valid months and days
+        if (month > 12 || (month == 2 && (year % 4 == 0 ? day > 29 : day > 28)) ||
+            ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) || day > 31) {
+            return false;
+        }
+        return true;
     }
-    Guest(string n, string c, string d) : name(n), contact(c), iftar_date(d) {}
+
+public:
+    Guest() : name("Nobody"), contact("aaaa@gmail.com"), iftar_date("01-05-2024") {}
+
+    Guest(string n, string c, string d) : name(n), contact(c), iftar_date(d) {
+        if (!isValidDate(iftar_date)) {
+            cout << "Invalid date provided, setting to default (01-05-2024).\n";
+            iftar_date = "01-05-2024";
+        }
+    }
 
     string getName() { return name; }
     string getDate() { return iftar_date; }
 
     void updateInvitation(string new_date) {
-        iftar_date = new_date;
-        cout << name << "'s invitation updated to " << new_date << endl;
+        if (isValidDate(new_date)) {
+            iftar_date = new_date;
+            cout << name << "'s invitation updated to " << new_date << endl;
+        } else {
+            cout << "Error: Invalid date format.\n";
+        }
     }
 
     void displayGuest() {
@@ -150,17 +177,18 @@ public:
 
 int main() {
     IftarManager manager;
-/*    manager.addGuest(Guest("Aisha", "1234567890", "2025-03-15"));
-    manager.addGuest(Guest("Bilal", "0987654321", "2025-03-10"));
-    manager.addGuest(Guest("Zara", "5550001111", "2025-03-20"));
+/*
+    manager.addGuest(Guest("Aisha", "1234567890", "15-03-2024"));
+    manager.addGuest(Guest("Bilal", "0987654321", "10-03-2025"));
+    manager.addGuest(Guest("Zara", "5550001111", "20-03-2025"));
 
     // Test Case 2:
     cout << "\nDisplaying All Guests:\n";
     manager.displayAllGuests();
 
     // Test Case 3:
-    cout << "\nUpdating Zara's invitation date to 2025-03-25:\n";
-    manager.updateGuestInvitation("Zara", "2025-03-25");
+    cout << "\nUpdating Zara's invitation date to 25-03-2025:\n";
+    manager.updateGuestInvitation("Zara", "25-03-2025");
 
     // Test Case 4:
     cout << "\nSorting Guests by Date:\n";
@@ -171,17 +199,18 @@ int main() {
     manager.displayAllGuests();
 
     // Test Case 5:
-    cout << "\nSending Reminder for 2025-03-25:\n";
-    manager.sendReminder("2025-03-25");
+    cout << "\nSending Reminder for 25-03-2025:\n";
+    manager.sendReminder("25-03-2025");
 
     // Test Case 6:
     cout << "\nAttempting to add Aisha again:\n";
-    manager.addGuest(Guest("Aisha", "1234567890", "2025-03-30"));
+    manager.addGuest(Guest("Aisha", "1234567890", "30-03-2025"));
+
+*/
 
 
-    */
 
     //Test from file
-   manager.runTestCases("Problem1_testcases.txt");
+  manager.runTestCases("Problem1_testcases.txt");
     return 0;
 }
