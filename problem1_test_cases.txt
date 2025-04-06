@@ -1,0 +1,110 @@
+
+1. Add a guest with a valid name and phone number:
+   Name: "Ahmed Ali"
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Guest is added successfully.
+
+2. Add a guest with a name containing numbers:
+   Name: "Ahmed123"
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Failed to add guest, error message: "Error: Guest name must contain letters only!"
+
+3. Add a guest with name containing extra spaces:
+   Name: "  Ahmed Ali  "
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Guest is added successfully, spaces trimmed.
+
+4. Add a guest with an invalid date (e.g., 32/13/2025):
+   Name: "Sara Ahmed"
+   Phone: "0987654321"
+   Date: "32/13/2025"
+   Expected: Error message: "Error: Invalid date format! Keeping previous date: 01/01/2025"
+
+5. Add a guest with a valid date within the valid range (e.g., 28/02/2025):
+   Name: "Ali Omar"
+   Phone: "0123456789"
+   Date: "28/02/2025"
+   Expected: Guest is added successfully.
+
+6. Add a guest with name containing special characters (e.g., "@", "#"):
+   Name: "Ahmed@Ali"
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Failed to add guest, error message: "Error: Guest name must contain letters only!"
+
+7. Add a guest with an empty name:
+   Name: ""
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Failed to add guest, error message: "Error: Guest name must contain letters only!"
+
+8. Add a guest with an empty phone number:
+   Name: "Mohamed Zaki"
+   Phone: ""
+   Date: "06/04/2025"
+   Expected: Guest is added successfully even with an empty phone number.
+
+9. Send reminders for a date with no guests:
+   Date: "06/04/2025"
+   Expected: "No guests scheduled for this date."
+
+10. Send reminders for a date with guests:
+   Date: "05/04/2025"
+   Expected: Send reminder for guests scheduled on this date.
+
+11. Sort the guest list by date:
+   Expected: Guests are sorted successfully by the invitation date.
+
+12. Edit a guest's date to a valid one:
+   Name: "Ahmed Ali"
+   New Date: "07/04/2025"
+   Expected: Date is updated successfully for the guest.
+
+13. Edit a guest's date to an invalid one:
+   Name: "Ahmed Ali"
+   New Date: "32/13/2025"
+   Expected: Error message: "Error: Invalid date format! Keeping previous date: 05/04/2025"
+
+14. Add the same guest with a different phone number:
+   Name: "Ali Mohamed"
+   Phone: "9876543210"
+   Date: "07/04/2025"
+   Expected: Guest is added successfully, phone number is different.
+
+15. Add the same guest with the same name and phone:
+   Name: "Ali Mohamed"
+   Phone: "0123456789"
+   Date: "05/04/2025"
+   Expected: Error message: "Error: Guest with name 'Ali Mohamed' and phone '0123456789' already exists!"
+
+16. Add a guest with spaces in the phone number:
+   Name: "Ali Mohamed"
+   Phone: " 123 456 789 "
+   Date: "07/04/2025"
+   Expected: Guest is added successfully after trimming the phone number.
+
+17. Add a guest with a phone number containing only digits:
+   Name: "Mona Ali"
+   Phone: "1234567890"
+   Date: "07/04/2025"
+   Expected: Guest is added successfully.
+
+18. Add a guest with an invalid name (contains symbols):
+   Name: "Ahmed@Ali"
+   Phone: "0123456789"
+   Date: "07/04/2025"
+   Expected: Error message: "Error: Guest name must contain letters only!"
+
+19. Edit the date of a guest successfully:
+   Name: "Ali Omar"
+   New Date: "08/04/2025"
+   Expected: Date is updated successfully.
+
+20. Try adding a guest with an empty date field:
+   Name: "Ali Kassem"
+   Phone: "0123456789"
+   Date: ""
+   Expected: Error message: "Error: Invalid date format! Keeping previous date: 01/01/2025"
