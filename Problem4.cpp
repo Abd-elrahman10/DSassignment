@@ -582,7 +582,7 @@ void SortingSystem<T>::showMenu()  { // show the menu of the sorting algorithms
     cout << "6. Quick Sort" << endl;
     cout << "7. Count Sort (Only for integers)" << endl;
     cout << "8. Radix Sort (Only for integers)" << endl;
-    cout << "9. Bucket Sort" << endl;
+    cout << "9. Bucket Sort (Only for numerical data)" << endl;
     cout << "Enter your choice (1-9): " ;
     cin >> choose;
 
