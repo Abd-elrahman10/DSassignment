@@ -1,113 +1,63 @@
-case 1:
-
-L.insert(987);
-L.insert(9);
-L.insert(0);
-L.insert(89);
-L.insert(34);
-L.insert(123);
-
-cout << L << endl;
-
-cout << L[3] << endl;
-cout << L[9] << endl;
-
-L.remove(1);
-L.remove(7);
-L.remove(3);
-
-cout << L[5] << endl;
-cout << L[2] << endl;
-cout << L[3] << endl;
-
-cout << L << endl;
-
-case 2:
-L.insert("hello");
-L.insert("data structure");
-L.insert("CS214");
-L.insert("sdkakfljadsjkl");
-L.insert("playing");
-
-cout << L << endl;
-
-cout << L[4] << endl;
-cout << L[3] << endl;
-
-
-L.remove(5);
-L.remove(4);
-L.remove(3);
-
-cout << L[4] << endl;
-cout << L[2] << endl;
-cout << L[0] << endl;
-
-cout << L << endl;
-case 3:
-L.insert(9.00);
-L.insert(12.95);
-L.insert(56.78);
-L.insert(44.12);
-L.insert(32.49);
-L.insert(100.00);
-L.insert(276.99);
-
-cout << L << endl;
-
-cout << L[11] << endl;
-cout << L[2] << endl;
-
-L.remove(2);
-L.remove(4);
-L.remove(4);
-
-cout << L[2] << endl;
-cout << L[0] << endl;
-cout << L[3] << endl;
-
-cout << L << endl;
-case 4:
-L.insert(67.00);
-L.insert(89.67);
-L.insert(55.90);
-L.insert(87.77);
-L.insert(0.99);
-
-cout << L << endl;
-
-cout << L[6] << endl;
-cout << L[1] << endl;
-
-L.remove(0);
-L.remove(5);
-L.remove(2);
-
-cout << L[1] << endl;
-cout << L[3] << endl;
-cout << L[0] << endl;
-
-cout << L << endl;
-case 5:
-L.insert('a');
-L.insert('b');
-L.insert(' ');
-L.insert('t');
-L.insert('A');
-L.insert('%');
-L.insert('W');
-
-cout << L << endl;
-
-cout << L[3] << endl;
-cout << L[6] << endl;
-
-L.remove(3);
-L.remove(3);
-L.remove(4);
-
-cout << L[3] << endl;
-cout << L[0] << endl;
-cout << L[10] << endl;
-
-cout << L << endl;
+#1
+insert 5
+insert -9
+insert 0
+delete 0
+-------------------------------------
+#2
+insert 10
+insert 20
+insert 15
+insert 5
+-------------------------------------
+#3
+insert 3
+insert 7
+insert 1
+insert 6
+delete 2
+-------------------------------------
+#4
+insert 100
+insert 50
+insert 75
+delete 1
+-------------------------------------
+#5
+insert 8
+insert 12
+insert 10
+delete 0
+-------------------------------------
+#6
+insert -2
+insert -5
+insert 0
+delete 1
+-------------------------------------
+#7
+insert 25
+insert 30
+insert 20
+insert 35
+delete 2
+-------------------------------------
+#8
+insert 60
+insert 40
+insert 50
+insert 45
+delete 3
+-------------------------------------
+#9
+insert 5
+insert 15
+insert 10
+delete 0
+-------------------------------------
+#10
+insert 99
+insert 88
+insert 77
+delete 1
+-------------------------------------
