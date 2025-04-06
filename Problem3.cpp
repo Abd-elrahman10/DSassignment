@@ -142,7 +142,7 @@ Node<T>* temp=List.head;
 
 void test(int testCaseNumber) {
     SortedLinkedList<int> L;
-    ifstream file ("test_cases.txt");
+    ifstream file ("Problem3_testcases.txt");
     if (!file) {
         cout << "Error opening file!" << endl;
         return;
