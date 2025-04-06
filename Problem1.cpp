@@ -141,6 +141,33 @@ public:
 
 int main() {
     IftarManager manager;
-    manager.runTestCases("Problem1_testcases.txt");
+    manager.addGuest(Guest("Aisha", "1234567890", "2025-03-15"));
+    manager.addGuest(Guest("Bilal", "0987654321", "2025-03-10"));
+    manager.addGuest(Guest("Zara", "5550001111", "2025-03-20"));
+
+    // Test Case 2: Displaying all guests
+    cout << "\nDisplaying All Guests:\n";
+    manager.displayAllGuests();
+
+    // Test Case 3: Updating a guest's invitation date
+    cout << "\nUpdating Zara's invitation date to 2025-03-25:\n";
+    manager.updateGuestInvitation("Zara", "2025-03-25");
+
+    // Test Case 4: Sorting guest list by date
+    cout << "\nSorting Guests by Date:\n";
+    manager.sortGuestList();
+
+    // Display after sort
+    cout << "\nGuests after sorting:\n";
+    manager.displayAllGuests();
+
+    // Test Case 5: Sending reminders for a specific date
+    cout << "\nSending Reminder for 2025-03-25:\n";
+    manager.sendReminder("2025-03-25");
+
+    // Test Case 6: Try to add duplicate guest
+    cout << "\nAttempting to add Aisha again:\n";
+    manager.addGuest(Guest("Aisha", "1234567890", "2025-03-30"));
+   // manager.runTestCases("Problem1_testcases.txt");
     return 0;
 }
