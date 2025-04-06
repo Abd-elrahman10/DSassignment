@@ -42,7 +42,7 @@ private:
     }
 
     bool dateLess(string d1, string d2) {
-        return d1 < d2; // Lexicographic comparison (works for YYYY-MM-DD format)
+        return d1 < d2; 
     }
 
 public:
@@ -50,6 +50,7 @@ public:
 
     ~IftarManager() {
         delete[] guestList;
+      
     }
 
     void addGuest(Guest g) {
@@ -66,11 +67,13 @@ public:
 
     void displayAllGuests() {
         if (size == 0) {
-            cout << "No guests added.\n";
+            cout << "No guests have been invited yet.\n";
             return;
         }
+        cout << "----- Guest List -----\n";
         for (int i = 0; i < size; i++)
             guestList[i].displayGuest();
+        cout << "----------------------\n";
     }
 
     void updateGuestInvitation(string name, string new_date) {
@@ -80,7 +83,7 @@ public:
                 return;
             }
         }
-        cout << "Guest " << name << " not found.\n";
+        cout << "Guest " << name << " not found. Cannot update invitation.\n";
     }
 
     void sortGuestList() {
@@ -100,17 +103,19 @@ public:
         bool found = false;
         for (int i = 0; i < size; i++) {
             if (guestList[i].getDate() == date) {
-                cout << "Reminder: " << guestList[i].getName() << ", your Iftar is on " << date << endl;
+                cout << "Reminder: " << guestList[i].getName()
+                     << ", your Iftar is on " << date << endl;
                 found = true;
             }
         }
-        if (!found) cout << "No guests scheduled for " << date << ".\n";
+        if (!found)
+            cout << "No guests scheduled for " << date << ".\n";
     }
 
     void runTestCases(string filename) {
         ifstream file(filename.c_str());
         if (!file) {
-            cout << "Error opening file.\n";
+            cout << "Error opening file: " << filename << endl;
             return;
         }
 
