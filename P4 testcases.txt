@@ -1,0 +1,108 @@
+case1: for int system
+
+size: 8
+1
+data: 1,245,22,44,66,3,43,0
+countsort (7)
+y
+
+size: 8
+1
+data: 1,245,22,44,66,43,0
+radixsort (8)
+y
+
+size: 8
+1
+data: 1,245,22,44,66,3,43,0
+bucketsort (9)
+y
+
+size: 8
+1
+data: 1,245,22,44,66,3,43,0
+bubblesort (3)
+n
+
+case 2: for double system
+
+size:6
+2
+data: 7.99,3.76,76.30,6.55,243.41,42.21
+countsort (7)
+insertionsort (1)
+y
+
+size:6
+2
+data: 7.99,3.76,76.30,6.55,243.41,42.21
+mergesort (5)
+y
+
+size:6
+2
+data: 7.99,3.76,76.30,6.55,243.41,42.21
+bucketsort (9)
+y
+
+size:6
+2
+data: 7.99,3.76,76.30,6.55,243.41,42.21
+selectionsort (2)
+n
+
+case 3: for float system
+size:5
+3
+data:0.22,13.33,8.44,76.00,87.00
+radixsort (8)
+bucketsort (9)
+y
+
+size:5
+3
+data:0.22,13.33,8.44,76.00,87.00
+quicksort (6)
+y
+
+size:5
+3
+data:0.22,13.33,8.44,76.00,87.00
+shellsort(4)
+n
+
+case 4: for string system
+
+size:5
+4
+data:"popo","oopwoe","bes","jkfa","ahh"
+bucketsort (9)
+insertionsort (1)
+y
+
+size:5
+4
+data:"popo","oopwoe","bes","jkfa","ahh"
+mergesort (5)
+n
+
+case 5: for char system
+
+size:7
+5
+data:'c','a','%','3','5','A','p' 
+bucketsort (9)
+selectionsort (2)
+y
+
+size:7
+5
+data:'c','a','%','3','5','A','p' 
+bubblesort (3)
+y
+
+size:7
+5
+data:'c','a','%','3','5','A','p' 
+insertionsort (1)
+n
