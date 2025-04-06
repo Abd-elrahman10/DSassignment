@@ -102,7 +102,7 @@ void FillPolynomial(int OrderOfPolynomial, int coeffsPolynomial[]) {
 int main() {
 
     // input by file
-    ifstream inputFile("test_cases.txt");
+    ifstream inputFile("Problem2_testcases.txt");
     if (!inputFile) {
         cout << "Error: Cannot open test_cases.txt" << endl;
         return 0;
