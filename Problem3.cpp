@@ -189,9 +189,10 @@ void test(int testCaseNumber) {
 }
 
 int main() {
-SortedLinkedList<char> L;
+SortedLinkedList<int> L;
 
-/*//Test case 1
+/*
+//Test case 1
 
     L.insert(5); // L = [5]
     L.insert(8); // L = [5, 8]
@@ -200,27 +201,26 @@ SortedLinkedList<char> L;
     L.insert(6); // L = [5, 6, 6, 7, 8]
     cout << L<<endl; // Output: [5, 6, 6, 7, 8]
 
-   */
+*/
 
-/*
 //Test case 2
-    cout << L[2]; // Output: 6
-    cout << L[10]; // Throws out_of_range exception*/
+
+   // cout << L[2]; // Output: 6
+  //  cout << L[10]; // Throws out_of_range exception*/
 
 
-
-
-/*
 //Test case 3
-    L.remove(0); // L = [6, 6, 7, 8]
+   /* L.remove(0); // L = [6, 6, 7, 8]
     cout << L; // Output: [6, 6, 7, 8]
     L.remove(100); // No change (out of bounds)
     cout << L; // Output: [6, 6, 7, 8]
     L.remove(2); // L = [6, 6, 8]
     cout << L; // Output: [6, 6, 8]
     L.remove(2); // L = [6, 6]
-    cout << L; // Output: [6, 6]
-*/
+   cout << L; // Output: [6, 6]*/
+   
+   /////Enter number of test case in below function and check from text file
+   
     test(1);
 
 
