@@ -9,7 +9,11 @@ private:
     string name, contact, iftar_date;
 
 public:
-    Guest() {}
+    Guest() {
+        name="Nobody";
+        contact="010000000";
+        iftar_date="aaaa@gmail.com";
+    }
     Guest(string n, string c, string d) : name(n), contact(c), iftar_date(d) {}
 
     string getName() { return name; }
@@ -42,7 +46,7 @@ private:
     }
 
     bool dateLess(string d1, string d2) {
-        return d1 < d2; 
+        return d1 < d2;
     }
 
 public:
@@ -50,7 +54,7 @@ public:
 
     ~IftarManager() {
         delete[] guestList;
-      
+
     }
 
     void addGuest(Guest g) {
