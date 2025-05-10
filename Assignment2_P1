@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Node {
+    string data;
+    Node* next;
+    Node(string data) {
+        this->data = data;
+        this->next = nullptr;
+    }
+};
+
+class Stack {
+private:
+    Node* head;
+
+public:
+    int len;
+    Stack() {
+        head = nullptr;
+        len = 0;
+    }
+
+    void push(string s) {
+        Node* newnode = new Node(s);
+        newnode->next = head;
+        head = newnode;
+        len++;
+    }
+
+    string top() {
+        if (head != nullptr)
+            return head->data;
+        return ""; 
+    }
+
+    void pop() {
+        if (head != nullptr) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            len--;
+        }
+    }
+
+    void clear() {
+        while (head != nullptr) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+        len = 0;
+    }
+
+
+};
+
+Stack forwardStack;
+
+class BackStack : public Stack {
+public:
+    void visit(string s) {
+        if (forwardStack.len > 0) {
+            forwardStack.clear();
+        }
+        push(s);
+        cout << "You are now at " << s << " page" << endl;
+    }
+
+    void goback() {
+        if (len <= 1) {
+            cout << "No page to go back to." << endl;
+            return;
+        }
+
+        string current = top();
+        pop();
+        forwardStack.push(current);
+        cout << "You are now at " << top() << " page" << endl;
+    }
+
+    void goforward() {
+        if (forwardStack.len==0) {
+            cout << "No page to go forward to." << endl;
+            return;
+        }
+
+        string forwardPage = forwardStack.top();
+        forwardStack.pop();
+        push(forwardPage);
+        cout << "You are now at " << forwardPage << " page" << endl;
+    }
+};
+
+
+int main() {
+    BackStack history;
+
+    history.visit("google.com");
+    history.visit("youtube.com");
+    history.visit("facebook.com");
+
+    history.goback();
+    history.goback();
+    history.goforward();
+    history.visit("FCAI.com");
+    history.goback();
+
+    return 0;
+}
