@@ -1,0 +1,63 @@
+#1
+insert 5
+insert -9
+insert 0
+delete 0
+-------------------------------------
+#2
+insert 10
+insert 20
+insert 15
+insert 5
+-------------------------------------
+#3
+insert 3
+insert 7
+insert 1
+insert 6
+delete 2
+-------------------------------------
+#4
+insert 100
+insert 50
+insert 75
+delete 1
+-------------------------------------
+#5
+insert 8
+insert 12
+insert 10
+delete 0
+-------------------------------------
+#6
+insert -2
+insert -5
+insert 0
+delete 1
+-------------------------------------
+#7
+insert 25
+insert 30
+insert 20
+insert 35
+delete 2
+-------------------------------------
+#8
+insert 60
+insert 40
+insert 50
+insert 45
+delete 3
+-------------------------------------
+#9
+insert 5
+insert 15
+insert 10
+delete 0
+-------------------------------------
+#10
+insert 99
+insert 88
+insert 77
+delete 1
+-------------------------------------

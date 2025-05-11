@@ -1,0 +1,62 @@
+add content:
+id : 546
+name: ali ahmed
+Email:ali54@yahoo.com
+phonenumber:01123232323
+
+id : 571
+name: gamal ahmed
+Email: gamal7999@email.com
+phonenumber:01222233337
+
+show the tree
+
+add content:
+id :780
+name:youseff nabil
+Email:youseff9e93@email.com
+phonenumber:01087989797
+
+show the tree
+
+add content :
+id : 802
+name: basel omar
+Email:bas6765@yahoo.com
+phonenumber:01555577666
+
+delete 546
+
+show the tree
+
+add content :
+
+id :869
+name: beshoy salama
+Email:besh888@email.com
+phonenumber:01177888664
+
+id :452
+name: sarah saeed
+Email: sarah78@email.com
+phonenumber:01223344550
+
+id :581
+name:farah ali
+Email: far989@email.com
+phonenumber: 01099988666
+
+delete node 
+802
+7
+571
+
+search 
+55
+802
+546
+452
+
+show sorted list
+
+exit
