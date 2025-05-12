@@ -2,6 +2,7 @@
 #include <limits>
 #include <stdexcept>
 #include <regex>
+#include <fstream>
 using namespace std;
 
 struct Node{
@@ -154,20 +155,20 @@ private:
         }
 
         if (node->ID < id){
-            return searchNode(node->left,id);
-        }else{
             return searchNode(node->right,id);
+        }else{
+            return searchNode(node->left,id);
         }
     }
 
     Node* deleteNode(Node* node , int id){// function to delete and balance the tree after every delete
 
         // find the node and to balance the tree from deleted node to the root
-        if (node->ID > id){
+        if (node->ID < id){
             node->right = deleteNode(node->right,id);
-        } else if (node->ID < id){
+        } else if (node->ID > id){
             node->left = deleteNode(node->left, id);
-        // when the node is found
+            // when the node is found
         } else {
             // in case the node doesn`t have two children
             if (node->left == nullptr || node->right == nullptr) {
@@ -177,14 +178,14 @@ private:
                 if (tmp == nullptr){
                     tmp = node;
                     node = nullptr;
-                // in case no children
+                    // in case no children
                 } else{
                     *node = *tmp;
                 }
 
                 delete tmp;
             }
-            // in case two children
+                // in case two children
             else{
 
                 Node* tmp = node->left;
@@ -297,7 +298,7 @@ public:
     AVL() : root(nullptr) {}
 
     ~AVL(){
-      delete root;
+        delete root;
     }
 
     void Add_content(){
@@ -333,7 +334,7 @@ public:
             getline(cin,phone);
 
             if (all_of(phone.begin(),phone.end(), ::isdigit) &&
-            (phone.length() <= 11 && phone.length() >= 7)){
+                (phone.length() <= 11 && phone.length() >= 7)){
                 break;
             }
 
@@ -351,7 +352,8 @@ public:
             cout << "Enter your email (...@Example.{com/org/..etc.}):" ;
             getline(cin,email);
 
-            regex EmailEnd("[a-z A-Z 0-9 .-+_,%*]+@[a-z]+\\.[a-z]{2,}");
+            regex EmailEnd("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+
 
             if (regex_match(email,EmailEnd)){
                 break;
@@ -366,34 +368,36 @@ public:
         cout << "the Contents has been saved successfully" << endl;
     }
 
-   void search(){
-       int id = getID(false);
+    void search(){
+        int id = getID(false);
 
-       Node* node = searchNode(root,id);
+        Node* node = searchNode(root,id);
 
-       if (node != nullptr){
-           cout << id <<"has been found"<<endl;
-       }else{
-           cout << id << "could not be found" <<endl;
-       }
-   }
+        if (node != nullptr){
+            cout<<"Contact is founded\n";
+            cout << "ID: " << node->ID << ", Name: " << node->Name
+                 << ", Phone: " << node->phone << ", Email: " << node->E_mail << endl;
+        }else{
+            cout << "Contact with id : " << id<<" could not be found" <<endl;
+        }
+    }
 
-   void Delete(){
+    void Delete(){
 
         int id = getID(false);
         Node* node = searchNode(root,id);
 
-       if (node != nullptr){
-           root = deleteNode(root,id);
-           cout << id << "is deleted successfully" << endl;
-       } else{
-           cout << id << "can`t be deleted as it doesn`t exist" << endl;
-       }
+        if (node != nullptr){
+            root = deleteNode(root,id);
+            cout << "Contact with id: "<<id << " is deleted successfully" << endl;
+        } else{
+            cout << "Contact with id: "<<id << " doesn`t exist" << endl;
+        }
     }
 
 
     void printSortedByID() {
-        cout << "\nContents sorted by ID:\n";
+        cout << "\nContacts sorted by ID:\n";
         inOrderTraversal(root);
     }
 
@@ -421,16 +425,125 @@ public:
         }
     }
 
+    void processTestFile(int testCaseNumber, const string& filename) {
+        ifstream file(filename);
+        if (!file.is_open()) {
+            cout << "Error opening file: " << filename << endl;
+            return;
+        }
+
+        string line;
+        bool foundTestCase = false;
+        bool processingTestCase = false;
+
+        while (getline(file, line)) {
+            // Skip empty lines
+            if (line.empty()) continue;
+
+            // Check for test case number
+            if (line[0] == '#') {
+                // Extract number after #
+                int currentTestCase = stoi(line.substr(1));
+
+                if (currentTestCase == testCaseNumber) {
+                    foundTestCase = true;
+                    processingTestCase = true;
+                    cout << "\nProcessing Test Case " << line << endl;
+                    continue;
+                } else if (processingTestCase) {
+                    // If we were processing a test case and found a new #, stop processing
+                    break;
+                }
+            }
+
+            // Only process commands if we're in the right test case
+            if (processingTestCase) {
+                if (line == "add content:") {
+                    while (true) {
+                        string field;
+                        getline(file, field);
+                        if (field.empty()) break;
+
+                        // Extract ID
+                        int id = stoi(field.substr(field.find(":") + 1));
+
+                        // Extract Name
+                        getline(file, field);
+                        string name = field.substr(field.find(":") + 1);
+                        name.erase(0, name.find_first_not_of(" "));
+
+                        // Extract Email
+                        getline(file, field);
+                        string email = field.substr(field.find(":") + 1);
+                        email.erase(0, email.find_first_not_of(" "));
+
+                        // Extract Phone
+                        getline(file, field);
+                        string phone = field.substr(field.find(":") + 1);
+                        phone.erase(0, phone.find_first_not_of(" "));
+
+                        root = insert_complete(root, id, name, phone, email);
+                        cout << "Added contact with ID: " << id << endl;
+                    }
+                }
+                else if (line == "show the tree") {
+                    printTreeWithSlashes();
+                }
+                else if (line == "delete" ) {
+                    int id;
+                    while (file >> id) {
+                        Node* node = searchNode(root, id);
+                        if (node != nullptr) {
+                            root = deleteNode(root, id);
+                            cout << "Contact with id: " << id << " is deleted successfully" << endl;
+                        } else {
+                            cout << "Contact with id: " << id << " doesn't exist" << endl;
+                        }
+                        file.ignore(numeric_limits<streamsize>::max(), '\n');
+                        if (file.peek() == '\n' || file.peek() == EOF) break;
+                    }
+                }
+                else if (line == "search") {
+                    int id;
+                    while (file >> id) {
+                        Node* node = searchNode(root, id);
+                        if (node != nullptr) {
+                            cout << "Contact is found\n";
+                            cout << "ID: " << node->ID << ", Name: " << node->Name
+                                 << ", Phone: " << node->phone << ", Email: " << node->E_mail << endl;
+                        } else {
+                            cout << "Contact with id: " << id << " could not be found" << endl;
+                        }
+                        file.ignore(numeric_limits<streamsize>::max(), '\n');
+                        if (file.peek() == '\n' || file.peek() == EOF) break;
+                    }
+                }
+                else if (line == "show sorted list") {
+                    printSortedByID();
+                }
+                else if (line == "exit") {
+                    break;
+                }
+            }
+        }
+
+        if (!foundTestCase) {
+            cout << "Test case #" << testCaseNumber << " not found in the file." << endl;
+        }
+
+        file.close();
+    }
+
 };
 
 void menu(AVL &tree){
     int c;
 
     try {
-        cout << "1) Add New Contents" << endl;
-        cout << "2) Search For Contents" << endl;
-        cout << "3) Delete a Contents" << endl;
-        cout << "4) show all Contents (ascending-ly by ID)" << endl;
+        cout << "1) Add New Contacts" << endl;
+        cout << "2) Search For Contacts" << endl;
+        cout << "3) Delete a Contacts" << endl;
+        cout << "4) show all Contacts (ascending-ly by ID)" << endl;
         cout << "5) show the tree" << endl;
         cout << "6) Exit" << endl;
         cin >> c;
@@ -473,5 +586,8 @@ void menu(AVL &tree){
 
 int main(){
     AVL tree;
-    menu(tree);
+
+
+    tree.processTestFile(1, "TestCases2.txt");
+    return 0;
 }
